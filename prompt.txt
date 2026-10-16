@@ -1,0 +1,44 @@
+=====================================================================
+ PROJECT: Port / Service Lookup                         Difficulty: EASY (E)
+ Theme: Networking fundamentals
+=====================================================================
+
+WHAT YOU'RE BUILDING
+--------------------
+A reference tool mapping well-known port numbers to services and back
+(80 -> HTTP, SSH -> 22), built from your own lookup table of the top ports.
+
+WHY IT'S WORTH YOUR TIME (transferable skills)
+----------------------------------------------
+- Knowing common ports by heart is table-stakes for networking and security —
+  when a scanner says "port 3389 open" you should instantly think RDP.
+- Building bidirectional lookups (number->name and name->number) teaches clean
+  dictionary design.
+- Flagging malware-associated ports is practical defensive knowledge.
+
+PYTHON CONCEPTS YOU'LL PRACTICE
+------------------------------
+dictionaries, reverse lookups, functions, user input, (optional) file reading.
+
+BUILD GUIDE
+-----------
+1. Build a dict of ~50 common ports -> service (20/21 FTP, 22 SSH, 23 Telnet,
+   25 SMTP, 53 DNS, 80 HTTP, 110 POP3, 143 IMAP, 443 HTTPS, 3306 MySQL,
+   3389 RDP, 8080 HTTP-alt, ...).
+2. Number mode: given a port, print the service (or "unknown").
+3. Name mode: search the dict values for a service, print its port(s).
+4. Add a note field for ports commonly abused by malware.
+
+EXAMPLE OUTPUT
+--------------
+    $ python ports.py 22
+    22/tcp -> SSH (Secure Shell)
+    $ python ports.py 3389
+    3389/tcp -> RDP (Remote Desktop) [common attack target]
+    $ python ports.py --name https
+    HTTPS -> 443/tcp
+
+STRETCH GOALS
+-------------
+- Read /etc/services for the full official list.
+- Given a range, print all known services in it.
